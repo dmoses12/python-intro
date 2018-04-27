@@ -7,9 +7,7 @@ def pattern(number):
     """
     print "Pattern for number: %s" % number
     # complete this function
-    if number == 1:
-        print "*"
-        return 0
+
     max_stars = 2 * number - 1 # max number of stars to print
     num_ulines = number - 1; # number underscores for first line
     # print to max_stars and fill with _
