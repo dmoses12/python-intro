@@ -2,7 +2,7 @@ def pattern(number):
     """Function to generate a pattern
     syntax: pattern(number)
     input: number
-    output: symetrical pattern of _ and * according to number provided
+    output: symmetrical pattern of _ and * according to number provided
     return: 0 when complete
     """
     print "Pattern for number: %s" % number
