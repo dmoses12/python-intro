@@ -28,12 +28,12 @@ def is_balanced(input_string):
     mylist = []
 
     #if open parens, push, if closed parens pop and compare.  If no match return false.
-    for c in input_string:
-        if c in ( '(', '{', '[' ):
-            mylist.append(c)  # push open paren
-        elif c in ( ')', '}', ']' ):
-            b = mylist.pop() # pop close paren and compare
-            if ( b == '(' and c == ')' ) or ( b == '{' and c == '}' ) or ( b == '[' and c == ']' ):
+    for achar in input_string:
+        if achar in ( '(', '{', '[' ):
+            mylist.append(achar)  # push open paren
+        elif achar in ( ')', '}', ']' ):
+            bchar = mylist.pop() # pop close paren and compare
+            if ( bchar == '(' and achar == ')' ) or ( bchar == '{' and achar == '}' ) or ( bchar == '[' and achar == ']' ):
                 continue
             else:
                 return False
