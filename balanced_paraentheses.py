@@ -1,48 +1,81 @@
 """
->>> is_balanced("({[]})")
+>>> is_balanced2("({[]})")
 Given input: ({[]})
 True
->>> is_balanced("(){}[]([])")
+>>> is_balanced2("(){}[]([])")
 Given input: (){}[]([])
 True
->>> is_balanced("[]{]")
+>>> is_balanced2("[]{]")
 Given input: []{]
 False
->>> is_balanced("([]}")
+>>> is_balanced2("([]}")
 Given input: ([]}
 False
 """
 
+
 import doctest
+#import pdb
 
-def is_balanced(input_string):
+mapping = {
+    '}':'{',
+    ']': '[',
+    ')': '(',
+}
+
+stack = []
+
+def push(item):
+    stack.append(item)
+
+def pop(item):
+    return stack.pop(-1)
+
+def clear():
+    global stack
+    stack = []
+
+
+def is_balanced2(input_string):
     """
-    Function to detect that paraenthesis specified in `input_string`
-    are balanced.
-
-    Returns True if balanced else return False
+    >>> is_balanced2("({[]})")
+    Given input: ({[]})
+    True
+    >>> is_balanced2("(){}[]([])")
+    Given input: (){}[]([])
+    True
+    >>> is_balanced2("[]{]")
+    Given input: []{]
+    False
+    >>> is_balanced2("([]}")
+    Given input: ([]}
+    False
     """
     print "Given input: %s" % input_string
-
-    # complete this function
-    mylist = []
-
-    #if open parens, push, if closed parens pop and compare.  If no match return false.
-    for achar in input_string:
-        if achar in ( '(', '{', '[' ):
-            mylist.append(achar)  # push open paren
-        elif achar in ( ')', '}', ']' ):
-            bchar = mylist.pop() # pop close paren and compare
-            if ( bchar == '(' and achar == ')' ) or ( bchar == '{' and achar == '}' ) or ( bchar == '[' and achar == ']' ):
+    #pdb.set_trace()
+    clear()
+    for item in input_string:
+        if item in mapping.values():
+                push(item)
+        else:
+            try:
+                value = pop(-1)
+            except IndexError:
+                return False
+            if mapping[item] == value:
                 continue
             else:
                 return False
-    return True
+    if stack:
+        return False
+    else:
+        return True
+
 
 if __name__ == "__main__":
     doctest.testmod()
-    print is_balanced("({[]})")  # should return True
-    print is_balanced("(){}[]([])") # should return True
-    print is_balanced("[]{]") # should return False
-    print is_balanced("([]}") # should return False
 
+    print is_balanced2("({[]})")  # should return True
+    print is_balanced2("(){}[]([])") # should return True
+    print is_balanced2("[]{]") # should return False
+    print is_balanced2("([]}") # should return False
